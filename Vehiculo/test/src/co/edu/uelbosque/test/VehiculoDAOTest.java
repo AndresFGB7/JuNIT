@@ -42,12 +42,13 @@ public class VehiculoDAOTest extends TestCase {
 
 		lista.add(vehiculo_1);
 		lista.add(vehiculo_2);
+		lista.add(vehiculo_5);
 
 	}
 
 	public void testVehiculoDAO() {
 		setupEscenario();
-		assertEquals("La cantidad de vehiculos debe ser 2", 2, lista.size());
+		assertEquals("La cantidad de vehiculos debe ser 3", 3, lista.size());
 		System.out.println(lista.size());
 	}
 
@@ -87,11 +88,18 @@ public class VehiculoDAOTest extends TestCase {
 		assertNotNull("Se vendio el vehiculo", vehiculo.venderVehiculo(vehiculo_1.getPlaca(), lista));
 
 	}
-
 	public void testEstadoVehiculo() {
 		setupEscenario();
 		assertNull("No se encontro el vehiculo buscado", vehiculo.estadoVehiculo("126-gdh", lista));
 		assertNotNull("Se muestra el estado del vehiculo", vehiculo.estadoVehiculo(vehiculo_1.getPlaca(), lista));
+
+	}public void testCompararVehiculopor() {
+		setupEscenario();
+		assertNotNull("Se compararon los vehiculos", vehiculo.compararVehiculopor(vehiculo_1.getPlaca(), vehiculo_5.getPlaca(), "Modelo", lista));
+	}
+	public void testCompararVehiculos() {
+		setupEscenario();
+		assertNotNull("Se compararon los vehiculos", vehiculo.compararVehiculos(vehiculo_1.getPlaca(), vehiculo_5.getPlaca(),lista));
 
 	}
 
