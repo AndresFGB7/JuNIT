@@ -36,7 +36,6 @@ public class VehiculoDAOTest extends TestCase {
 
 		vehiculo_1 = new Vehiculo("prueba1", "BMW", "123-XYZ", 4, 5, "Auto Movil", false);
 		vehiculo_2 = new Vehiculo("prueba2", "NISSAN", "456-QWE", 6, 8, "Camioneta", false);
-		vehiculo_3 = new Vehiculo("prueba3", "WolskWagen", "789-TYU", 0, 2, "Motocicleta", false);
 		vehiculo_4 = new Vehiculo("prueba4", "Ford", "247-FGH", 2, 67, "Avion", false);
 		vehiculo_5 = new Vehiculo("prueba5", "Tesla", "123-XYZ", 4, 6, "Helicoptero", false);
 

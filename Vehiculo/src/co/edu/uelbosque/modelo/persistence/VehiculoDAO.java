@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 import co.edu.uelbosque.modelo.Vehiculo;
 
+/**
+ * En esta clase se genera el CRUD de Vehiculo
+ *
+ */
 public class VehiculoDAO {
 
 	private Archivo opArchivo;
