@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import co.edu.uelbosque.modelo.Vehiculo;
 import co.edu.uelbosque.modelo.persistence.Archivo;
 import co.edu.uelbosque.modelo.persistence.VehiculoDAO;
+import co.edu.uelbosque.view.VentanaPrincipal;
 
 public class Controller {
 	
@@ -14,6 +15,7 @@ public class Controller {
 	private Archivo archivo;
 	private VehiculoDAO vehiculodao;
 	private File file = new File("Data/Vehiculo.dat");
+	private VentanaPrincipal ventana;
 
 	public Controller() {
 		
@@ -21,6 +23,7 @@ public class Controller {
 		archivo = new Archivo(file);
 		vehiculodao = new VehiculoDAO(archivo);
 		vehiculodao.setVehiculos(archivo.leerArchivo(file));
+		ventana = new VentanaPrincipal();
 		agregar();
 		
 	}public void agregar() {
