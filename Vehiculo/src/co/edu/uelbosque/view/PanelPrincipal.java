@@ -20,7 +20,7 @@ public class PanelPrincipal extends JPanel {
 
 	public void inicializarComponentes() {
 	
-		ImageIcon diam = new ImageIcon(getClass().getResource("/imagenes/"+"cristal.gif"));
+		ImageIcon diam = new ImageIcon(getClass().getResource("/imagenes/"+"humo.gif"));
 		
 		diamante1 = new JLabel(diam);
         diamante1.setBounds(120, 83, 119, 119);
@@ -34,14 +34,17 @@ public class PanelPrincipal extends JPanel {
 		ImageIcon Hand = new ImageIcon(getClass().getResource("/imagenes/"+"hand.gif"));
 		hand1 = new JLabel(Hand);
 		hand1.setBounds(274, 314,97, 58);
+		hand1.setVisible(false);
 		add(hand1);
 		
 		hand2 = new JLabel(Hand);
 		hand2.setBounds(274, 386,97, 58);
+		hand2.setVisible(false);
 		add(hand2);
 		
 		hand3 = new JLabel(Hand);
 		hand3.setBounds(274, 458,97, 58);
+		hand3.setVisible(false);
 		add(hand3);
 		
 		ImageIcon coat = new ImageIcon(getClass().getResource("/imagenes/"+"catalogo.png"));

@@ -29,9 +29,37 @@ public class VentanaPrincipal  extends JFrame{
 		
 		panelInicio = new PanelPrincipal();
 		nuevo = new PanelNuevo();
-		getContentPane().add(nuevo, BorderLayout.CENTER);
+		getContentPane().add(panelInicio, BorderLayout.CENTER);
 
 		
+	}
+
+	/**
+	 * @return the panelInicio
+	 */
+	public PanelPrincipal getPanelInicio() {
+		return panelInicio;
+	}
+
+	/**
+	 * @param panelInicio the panelInicio to set
+	 */
+	public void setPanelInicio(PanelPrincipal panelInicio) {
+		this.panelInicio = panelInicio;
+	}
+
+	/**
+	 * @return the nuevo
+	 */
+	public PanelNuevo getNuevo() {
+		return nuevo;
+	}
+
+	/**
+	 * @param nuevo the nuevo to set
+	 */
+	public void setNuevo(PanelNuevo nuevo) {
+		this.nuevo = nuevo;
 	}
 
 }
