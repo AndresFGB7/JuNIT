@@ -18,7 +18,7 @@ public class PanelVender extends JPanel {
 
 	private JLabel placa, fondo, marca, modelo, puertas, asientos;
 	private JLabel[] labelMuestra;
-	private JButton comprar, carro, moto, avion, camioneta, helicoptero, ver;
+	private JButton comprar, carro, moto, avion, camioneta, helicoptero, ver,bAtras;
 	private JComboBox<String> datosVenta;
 
 	/**
@@ -30,7 +30,7 @@ public class PanelVender extends JPanel {
 
 		inicializarComponentes();
 
-		setVisible(true);
+		setVisible(false);
 
 	}
 
@@ -40,9 +40,19 @@ public class PanelVender extends JPanel {
 	 */
 
 	private void inicializarComponentes() {
+		
+		ImageIcon back = new ImageIcon(getClass().getResource("/imagenes/" + "botonAtras.png"));
+		bAtras = new JButton(back);
+		bAtras.setActionCommand("ATRAS");
+		bAtras.setBorderPainted(false);
+		bAtras.setOpaque(false);
+		bAtras.setBackground(Color.white);
+		bAtras.setBounds(20,20,64,64);
+		add(bAtras);
+		
 
 		// LABEL PLACA
-		placa = new JLabel("123-YTF");
+		placa = new JLabel();
 		placa.setFont(new Font("Phosphate", 2, 35));
 		// placa.setOpaque(false);
 		placa.setForeground(Color.BLACK);
@@ -88,60 +98,57 @@ public class PanelVender extends JPanel {
 
 		// INFORMACION
 
-		marca = new JLabel("FERRARI PUTO");
-		marca.setBounds(720, 390, 231, 35);
+		marca = new JLabel();
+		marca.setBounds(770, 390, 231, 35);
 		marca.setFont(new Font("Arial Black", 2, 20));
 		add(marca);
 
-		modelo = new JLabel("2016");
+		modelo = new JLabel();
 		modelo.setBounds(780, 445, 231, 35);
 		modelo.setFont(new Font("Arial Black", 2, 20));
 		add(modelo);
 
-		puertas = new JLabel("23");
+		puertas = new JLabel();
 		puertas.setBounds(800, 490, 231, 35);
 		puertas.setFont(new Font("Arial Black", 2, 20));
 		add(puertas);
 
-		asientos = new JLabel("12");
+		asientos = new JLabel();
 		asientos.setBounds(800, 530, 231, 35);
 		asientos.setFont(new Font("Arial Black", 2, 20));
 		add(asientos);
 
-		// LABELS MUESTRARIO
-		labelMuestra = new JLabel[5];
-		labelMuestra[0] = newLMuestra("motocicleta");
-		labelMuestra[0].setBounds(85, 153, 341, 341);
-		add(labelMuestra[0]);
+		//LABELS MUESTRARIO
+				labelMuestra = new JLabel[5];
+				labelMuestra[0] = newLMuestra("motocicleta");
+				labelMuestra[0].setBounds(560, 50, 341, 341);
+				add(labelMuestra[0]);
 
-		labelMuestra[1] = newLMuestra("helicoptero");
-		labelMuestra[1].setBounds(85, 153, 341, 341);
-		add(labelMuestra[1]);
-
-		labelMuestra[2] = newLMuestra("carro");
-		labelMuestra[2].setBounds(20, 50, 500, 500);
-		add(labelMuestra[2]);
-
-		labelMuestra[3] = newLMuestra("avion");
-		labelMuestra[3].setBounds(110, 180, 313, 313);
-		add(labelMuestra[3]);
-
-		labelMuestra[4] = newLMuestra("camioneta");
-		labelMuestra[4].setBounds(35, 100, 440, 440);
-		add(labelMuestra[4]);
-
+				labelMuestra[1] = newLMuestra("helicoptero");
+				labelMuestra[1].setBounds(570, 60, 341, 341);
+				add(labelMuestra[1]);
+				
+				labelMuestra[2] = newLMuestra("carro");
+				labelMuestra[2].setBounds(500, -50, 500, 500);
+				add(labelMuestra[2]);
+				
+				labelMuestra[3] = newLMuestra("avion");
+				labelMuestra[3].setBounds(600, 80, 313, 313);
+				add(labelMuestra[3]);
+				
+				labelMuestra[4] = newLMuestra("camioneta");
+				labelMuestra[4].setBounds(530, 20, 440, 440);
+				add(labelMuestra[4]);
+				
+		
 		// COMBOBOX
 
-//		try {
-//			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-
+	
 		datosVenta = new JComboBox<String>();
 		datosVenta.setBounds(70, 325, 332, 62);
 		datosVenta.setFont(new Font("Arial Black", 2, 20));
 		add(datosVenta);
+	
 
 		// FONDO
 		ImageIcon fond = new ImageIcon(getClass().getResource("/imagenes/" + "fondoVender.png"));
@@ -158,7 +165,7 @@ public class PanelVender extends JPanel {
 	 * @return JLabel
 	 */
 	private JLabel newLMuestra(String a) {
-		ImageIcon mot = new ImageIcon(getClass().getResource("/imagenes/" + a + ".gif"));
+		ImageIcon mot = new ImageIcon(getClass().getResource("/imagenes/" + a+".gif"));
 		JLabel label = new JLabel(mot);
 		label.setVisible(false);
 		return label;
@@ -264,20 +271,13 @@ public class PanelVender extends JPanel {
 		this.asientos = asientos;
 	}
 
+	
 	/**
 	 * @return the labelMuestra
 	 */
-	public JLabel[] getLabelMuestra() {
-		return labelMuestra;
+	public JLabel getLabelMuestra(int a) {
+		return labelMuestra[a];
 	}
-
-	/**
-	 * @param labelMuestra the labelMuestra to set
-	 */
-	public void setLabelMuestra(JLabel[] labelMuestra) {
-		this.labelMuestra = labelMuestra;
-	}
-
 	/**
 	 * @return the comprar
 	 */
@@ -389,6 +389,22 @@ public class PanelVender extends JPanel {
 	public void setDatosVenta(JComboBox<String> datosVenta) {
 		this.datosVenta = datosVenta;
 	}
+
+	/**
+	 * @return the bAtras
+	 */
+	public JButton getbAtras() {
+		return bAtras;
+	}
+
+	/**
+	 * @param bAtras the bAtras to set
+	 */
+	public void setbAtras(JButton bAtras) {
+		this.bAtras = bAtras;
+	}
+	
+	
 	
 	
 

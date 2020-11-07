@@ -5,12 +5,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultTreeSelectionModel;
 
 /**
  * Esta clase agrega muestra el catalogo de carros
  *
  */
 public class PanelCatalogo extends JPanel {
+	private static final LookAndFeel DefaultButtonModel = null;
 	private JLabel fondo;
 	private JComboBox<String> datos;
 	private JButton buscar;
@@ -52,26 +54,11 @@ public class PanelCatalogo extends JPanel {
 		
 		//COMPARAR
 
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		comparar = new JComboBox<String>();
-		comparar.setBounds(100,200,100,25);
-		comparar.setVisible(false);
-		add(comparar);
 		
-
-	
-		datos2 = new JComboBox<String>();
-		datos2.setBounds(100,170,100,25);
-		datos2.setVisible(false);
-		add(datos2);
-		
-		bComparar = new JButton("Comparar");
-		bComparar.setBounds(100,300,100,30);
+		ImageIcon com = new ImageIcon(getClass().getResource("/imagenes/" + "botonComparar.png"));
+		bComparar = new JButton(com);
+		bComparar.setBounds(90,320,150,40);
 		bComparar.setActionCommand("Compara");
 		bComparar.setVisible(false);
 		add(bComparar);		
@@ -112,15 +99,10 @@ public class PanelCatalogo extends JPanel {
 		add(mostrarInfo6);
 	
 	
-		
-		//COMBOBOX DE DATOS
-		datos = new JComboBox<String>();
-		datos.setBounds(100,120,100,27);
-		add(datos);
-		
 		//BOTON
-		buscar = new JButton("Mostrar");
-		buscar.setBounds(100,300,100,30);
+		ImageIcon search = new ImageIcon(getClass().getResource("/imagenes/" + "botonMostrar.png"));
+		buscar = new JButton(search);
+		buscar.setBounds(90,320,150,40);
 		buscar.setActionCommand("MOSTRAR");
 		add(buscar);
 		
@@ -141,10 +123,38 @@ public class PanelCatalogo extends JPanel {
 		add(mostrarInfo2);
 
 		
-		bAtras = new JButton("Atras");
+		ImageIcon back = new ImageIcon(getClass().getResource("/imagenes/" + "botonAtras.png"));
+		bAtras = new JButton(back);
 		bAtras.setActionCommand("ATRAS");
-		bAtras.setBounds(20,30,80,22);
+		bAtras.setBorderPainted(false);
+		bAtras.setOpaque(false);
+		bAtras.setBackground(Color.white);
+		bAtras.setBounds(30,30,64,64);
 		add(bAtras);
+		
+
+		//COMBOBOX DE DATOS
+		
+
+			comparar = new JComboBox<String>();
+			comparar.setBounds(100,220,130,40);
+			comparar.setFont(new Font("Arial Black", 2, 20));
+			comparar.setVisible(false);
+			add(comparar);
+
+			datos2 = new JComboBox<String>();
+			datos2.setBounds(100,170,130,40);
+			datos2.setFont(new Font("Arial Black", 2, 20));
+			datos2.setVisible(false);
+			add(datos2);
+			
+			datos = new JComboBox<String>();
+			datos.setBounds(100,120,130,40);
+			datos.setFont(new Font("Arial Black", 2, 20));
+			add(datos);
+		
+			
+		
 		//FONDO
 		ImageIcon backGround = new ImageIcon(getClass().getResource("/imagenes/" + "fondoCatalogo.png"));
 		fondo = new JLabel(backGround);

@@ -1,6 +1,7 @@
 package co.edu.uelbosque.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.awt.Component;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
@@ -40,7 +41,7 @@ public class Controller implements ActionListener {
 		vehiculodao = new VehiculoDAO(archivo);
 		vehiculodao.setVehiculos(archivo.leerArchivo(file));
 		ventana = new VentanaPrincipal();
-
+		
 		asignarOyentes();
 
 	}
@@ -83,6 +84,23 @@ public class Controller implements ActionListener {
 		ventana.getpCatalogo().getBuscar().addActionListener(this);
 		ventana.getpCatalogo().getbComparar().addActionListener(this);
 		ventana.getpCatalogo().getbAtras().addActionListener(this);
+		
+		//BOTON PANEL VENTA
+		ventana.getpVender().getAvion().addMouseListener(e);
+		ventana.getpVender().getCamioneta().addMouseListener(e);
+		ventana.getpVender().getCarro().addMouseListener(e);
+		ventana.getpVender().getHelicoptero().addMouseListener(e);
+		ventana.getpVender().getMoto().addMouseListener(e);
+		ventana.getpVender().getComprar().addActionListener(this);
+		ventana.getpVender().getCarro().addActionListener(this);
+		ventana.getpVender().getCamioneta().addActionListener(this);
+		ventana.getpVender().getMoto().addActionListener(this);
+		ventana.getpVender().getAvion().addActionListener(this);
+		ventana.getpVender().getHelicoptero().addActionListener(this);
+		ventana.getpVender().getVer().addActionListener(this);
+		ventana.getpVender().getbAtras().addActionListener(this);
+		
+		
 	}
 
 	MouseListener e = new MouseListener() {
@@ -143,6 +161,28 @@ public class Controller implements ActionListener {
 				tipo = "Camioneta";
 				mostrarImagen(4, "CAMIONETA");
 			}
+			// BOTONES PVENTA
+			if (e.getSource() == ventana.getpVender().getMoto()) {
+				tipo = "Moto";
+				mostrarImagen2(0, "MOTO");
+			}
+			if (e.getSource() == ventana.getpVender().getHelicoptero()) {
+				tipo = "Helicoptero";
+				mostrarImagen2(1, "HELICOPTERO");
+			}
+			if (e.getSource() == ventana.getpVender().getCarro()) {
+				tipo = "Carro";
+				mostrarImagen2(2, "CARRO");
+			}
+			if (e.getSource() == ventana.getpVender().getAvion()) {
+				tipo = "Avion";
+				mostrarImagen2(3, "AVION");
+			}
+			if (e.getSource() == ventana.getpVender().getCamioneta()) {
+				tipo = "Camioneta";
+				mostrarImagen2(4, "CAMIONETA");
+			}
+			
 		}
 
 		@Override
@@ -167,7 +207,7 @@ public class Controller implements ActionListener {
 
 			vehiculodao.agregarVehiculo(modelo, marca, placa, nPuertas, nAsientos, tipo, false, f);
 			ventana.mostrarMensaje(
-					"Se agregó el vehiculo \n" + vehiculodao.mostrarInfoString(placa, vehiculodao.getVehiculos()));
+					"Se agregï¿½ el vehiculo \n" + vehiculodao.mostrarInfoString(placa, vehiculodao.getVehiculos()));
 			vehiculodao.mostrarLista(vehiculodao.getVehiculos());
 
 			ventana.getPanelNuevo().getTextoMarca().setText("");
@@ -315,10 +355,94 @@ public class Controller implements ActionListener {
 				ventana.getpCatalogo().getMostrarInfo5().setText(b);
 				ventana.getpCatalogo().getMostrarInfo6().setText(b);
 			}
+				
+		}
+		if(command.equals("CARROVENTA")) {
+			changeToComparar2(true);
+
+			ventana.getpVender().getDatosVenta().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Carro")) {
+					ventana.getpVender().getDatosVenta().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if(command.equals("CAMIONETAVENTA")) {
+			changeToComparar2(true);
+
+			ventana.getpVender().getDatosVenta().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Camioneta")) {
+					ventana.getpVender().getDatosVenta().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if(command.equals("MOTOVENTA")) {
+			changeToComparar2(true);
+
+			ventana.getpVender().getDatosVenta().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Moto")) {
+					ventana.getpVender().getDatosVenta().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if(command.equals("AVIONVENTA")) {
+			changeToComparar2(true);
+
+			ventana.getpVender().getDatosVenta().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Avion")) {
+					ventana.getpVender().getDatosVenta().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if(command.equals("HELICOPTEROVENTA")) {
+			changeToComparar2(true);
+
+			ventana.getpVender().getDatosVenta().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Carro")) {
+					ventana.getpVender().getDatosVenta().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if(command.equals("VERAUTO")) {
+			String placa = ventana.getpVender().getDatosVenta().getSelectedItem().toString();
+		
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getPlaca().equals(placa)) {
+					ventana.getpVender().getPlaca().setText(vehiculodao.getVehiculos().get(i).getPlaca());	
+					ventana.getpVender().getMarca().setText(vehiculodao.getVehiculos().get(i).getMarca());	
+					ventana.getpVender().getModelo().setText(vehiculodao.getVehiculos().get(i).getModelo());	
+					ventana.getpVender().getPuertas().setText(vehiculodao.getVehiculos().get(i).getnPuertas()+ "");	
+					ventana.getpVender().getAsientos().setText(vehiculodao.getVehiculos().get(i).getnAsientos()+ "");	
+				}
+			}
+		}
+		if(command.equals("COMPRARAUTO")) {
+			String placa = ventana.getpVender().getDatosVenta().getSelectedItem().toString();
 			
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getPlaca().equals(placa)) {
+					ventana.mostrarMensaje("Vehiculo: " + vehiculodao.getVehiculos().get(i).getMarca() + " - " + vehiculodao.getVehiculos().get(i).getModelo()+ "\n Con placa: " + vehiculodao.getVehiculos().get(i).getPlaca() + "\n VENDIDO CON EXITO");	
+					vehiculodao.getVehiculos().get(i).setEstado(true);
+					
+					
+					ventana.getpVender().getPlaca().setText("");	
+					ventana.getpVender().getMarca().setText("");
+					ventana.getpVender().getModelo().setText("");	
+					ventana.getpVender().getPuertas().setText("");	
+					ventana.getpVender().getAsientos().setText("");	
+					
+					ventana.getpVender().getDatosVenta().removeAllItems();
+					
 			
-			
-			
+					
+					
+				
+				}
+			}
 		}
 	}
 
@@ -351,7 +475,20 @@ public class Controller implements ActionListener {
 				ventana.getPanelNuevo().getLabelMuestra(i).setVisible(false);
 			}
 		}
-	}/**
+	}
+	
+	public void mostrarImagen2(int a, String text) {
+		
+		for (int i = 0; i < 5; i++) {
+			if (i == a) {
+				ventana.getpVender().getLabelMuestra(i).setVisible(true);;
+			} else {
+				ventana.getpVender().getLabelMuestra(i).setVisible(false);
+			}
+		}
+	}
+	
+	/**
 	 *Este metodo apaga unos componentes del panel catalogo para comparar o no
 	 * @param a - true si no se compara
 	 */
@@ -381,5 +518,20 @@ public class Controller implements ActionListener {
 			ventana.getpCatalogo().getMostrarInfo6().setVisible(true);
 		}
 	}
-
+	/**
+	 *Este metodo apaga unos componentes del panel catalogo para comparar o no
+	 * @param a - true si no se compara
+	 */
+	public void changeToComparar2(Boolean a) {
+		if (a == true) {
+			ventana.getpVender().getVer().setVisible(true);
+			ventana.getpVender().getComprar().setVisible(true);
+			
+			ventana.getpVender().getPlaca().setVisible(true);
+			ventana.getpVender().getMarca().setVisible(true);
+			ventana.getpVender().getModelo().setVisible(true);
+			ventana.getpVender().getPuertas().setVisible(true);
+			ventana.getpVender().getAsientos().setVisible(true);
+		}
+	}
 }

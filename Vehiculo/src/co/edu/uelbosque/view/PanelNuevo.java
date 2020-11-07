@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.DefaultButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.LookAndFeel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
@@ -20,6 +22,7 @@ import javax.swing.SwingConstants;
  *
  */
 public class PanelNuevo extends JPanel {
+
 
 	private JLabel fondo,puntero, enunciado, enunciado2;
 	private JLabel[] labelMuestra;
@@ -68,15 +71,26 @@ public class PanelNuevo extends JPanel {
 		bHelicoptero.setBounds(872, 181, 80, 80);
 		add(bHelicoptero);
 		
-		bConfirmar = new JButton("Confirmar");
-		bConfirmar.setBounds(675,525,100,20);
+		ImageIcon conf = new ImageIcon(getClass().getResource("/imagenes/" + "botonConfirmar.png"));
+		bConfirmar = new JButton(conf);
+		bConfirmar.setBounds(665,530,150,40);
+		bConfirmar.setBorderPainted(false);
+		bConfirmar.setOpaque(false);
+		bConfirmar.setBackground(Color.white);
 		bConfirmar.setActionCommand("CONFIRMAR");
 		add(bConfirmar);
 		
-		bAtras = new JButton("ATRAS");
-		bAtras.setBounds(20,0,50,20);
+		
+		
+		ImageIcon back = new ImageIcon(getClass().getResource("/imagenes/" + "botonAtras.png"));
+		bAtras = new JButton(back);
 		bAtras.setActionCommand("ATRAS");
+		bAtras.setBorderPainted(false);
+		bAtras.setOpaque(false);
+		bAtras.setBackground(Color.white);
+		bAtras.setBounds(30,20,64,64);
 		add(bAtras);
+		
 		
 			
 		//MARCA Y PLACA
@@ -90,28 +104,28 @@ public class PanelNuevo extends JPanel {
 		add(textoPlaca);
 		
 		//JCOMBOBOX 
-		modeloBox = new JComboBox<String>();
-		for (int i = 0; i < 100; i++) {
-			modeloBox.addItem(""+(1930+i));
-		}
-		modeloBox.setBounds(675, 350, 134, 20);
-		add(modeloBox);
-		
-		asientoBox = new JComboBox<String>();
-		for (int i = 0; i < 630; i++) {
-			asientoBox.addItem(""+i);
-		}
-		asientoBox.setBounds(575, 500, 50, 20);
-		add(asientoBox);
-		
-		puertaBox = new JComboBox<String>();
-		for (int i = 0; i < 10; i++) {
-			puertaBox.addItem(""+i);
-		}
-		puertaBox.setBounds(800, 500, 50, 20);
-		add(puertaBox);
 
-		
+			modeloBox = new JComboBox<String>();
+			for (int i = 0; i < 100; i++) {
+				modeloBox.addItem(""+(1930+i));
+			}
+			modeloBox.setBounds(675, 345, 134, 30);
+			add(modeloBox);
+			
+			asientoBox = new JComboBox<String>();
+			for (int i = 0; i < 630; i++) {
+				asientoBox.addItem(""+i);
+			}
+			asientoBox.setBounds(575, 500, 50, 25);
+			add(asientoBox);
+			
+			puertaBox = new JComboBox<String>();
+			for (int i = 0; i < 90; i++) {
+				puertaBox.addItem(""+i);
+			}
+			puertaBox.setBounds(800, 500, 50, 25);
+			add(puertaBox);
+					
 		//LABELS MUESTRARIO
 		labelMuestra = new JLabel[5];
 		labelMuestra[0] = newLMuestra("motocicleta");
@@ -164,16 +178,16 @@ public class PanelNuevo extends JPanel {
 
 		
 		//ENUNCIADO
-		enunciado = new JLabel("CAMIONETA",SwingConstants.CENTER);
+		enunciado = new JLabel("VEHICULO",SwingConstants.CENTER);
 		enunciado.setBounds(49, 500, 430, 94);
-		enunciado.setForeground(Color.black);
+		enunciado.setForeground(new Color(241,91,31));
 		enunciado.setFont(new Font("Phosphate", 2, 60));
 		add(enunciado);
 
 		enunciado2 = new JLabel(enunciado.getText(),SwingConstants.CENTER);
 		enunciado2.setBounds(47, 499, 430, 94);
-		enunciado2.setForeground(Color.gray);
-		enunciado2.setFont(new Font("Phosphate", 2, 60));
+		enunciado2.setForeground(Color.BLACK);
+		enunciado2.setFont(new Font("Phosphate", 2, 63));
 		add(enunciado2);
 		
 		

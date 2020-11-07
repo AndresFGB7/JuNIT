@@ -32,7 +32,7 @@ public class PanelPrincipal extends JPanel {
 	
 		
 		//LABEL DIAMANTES TITULO
-		ImageIcon diam = new ImageIcon(getClass().getResource("/imagenes/"+"humo.gif"));
+		ImageIcon diam = new ImageIcon(getClass().getResource("/imagenes/"+"cristal.gif"));
 		
 		diamante1 = new JLabel(diam);
         diamante1.setBounds(120, 83, 119, 119);
