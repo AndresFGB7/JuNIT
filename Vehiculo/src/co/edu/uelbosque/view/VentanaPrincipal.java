@@ -16,6 +16,7 @@ public class VentanaPrincipal  extends JFrame{
 	private PanelNuevo panelNuevo;
 	private PanelBotones pBotones;
 	private PanelCatalogo pCatalogo;
+	private PanelVender pVender;
 	
 	/**
 	 * Este es el metodo constructor
@@ -45,6 +46,7 @@ public class VentanaPrincipal  extends JFrame{
 		panelNuevo = new PanelNuevo();
 		pBotones = new PanelBotones();
 		pCatalogo =  new PanelCatalogo();
+		pVender = new PanelVender();
 		getContentPane().add(panelInicio, BorderLayout.CENTER);
 
 		
@@ -75,27 +77,57 @@ public class VentanaPrincipal  extends JFrame{
 	}
 
 	/**
-	 * @param nuevo the nuevo to set
+	 * @return the pBotones
+	 */
+	public PanelBotones getpBotones() {
+		return pBotones;
+	}
+
+	/**
+	 * @param pBotones the pBotones to set
+	 */
+	public void setpBotones(PanelBotones pBotones) {
+		this.pBotones = pBotones;
+	}
+
+	/**
+	 * @return the pCatalogo
+	 */
+	public PanelCatalogo getpCatalogo() {
+		return pCatalogo;
+	}
+
+	/**
+	 * @param pCatalogo the pCatalogo to set
+	 */
+	public void setpCatalogo(PanelCatalogo pCatalogo) {
+		this.pCatalogo = pCatalogo;
+	}
+
+	/**
+	 * @return the pVender
+	 */
+	public PanelVender getpVender() {
+		return pVender;
+	}
+
+	/**
+	 * @param pVender the pVender to set
+	 */
+	public void setpVender(PanelVender pVender) {
+		this.pVender = pVender;
+	}
+
+	/**
+	 * @param panelNuevo the panelNuevo to set
 	 */
 	public void setPanelNuevo(PanelNuevo panelNuevo) {
 		this.panelNuevo = panelNuevo;
 	}
 
-	public PanelBotones getpBotones() {
-		return pBotones;
-	}
-
-	public void setpBotones(PanelBotones pBotones) {
-		this.pBotones = pBotones;
-	}
-
-	public PanelCatalogo getpCatalogo() {
-		return pCatalogo;
-	}
-
-	public void setpCatalogo(PanelCatalogo pCatalogo) {
-		this.pCatalogo = pCatalogo;
-	}
-
+	/**
+	 * @param nuevo the nuevo to set
+	 */
+	
 	
 }
