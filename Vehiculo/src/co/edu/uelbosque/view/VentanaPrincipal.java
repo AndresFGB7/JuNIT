@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 
 /**
  * En esta clase se adjuntan los paneles y 
@@ -18,7 +16,6 @@ public class VentanaPrincipal  extends JFrame{
 	private PanelNuevo panelNuevo;
 	private PanelBotones pBotones;
 	private PanelCatalogo pCatalogo;
-	private JScrollPane scroll;
 	
 	/**
 	 * Este es el metodo constructor
@@ -29,7 +26,7 @@ public class VentanaPrincipal  extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// getContentPane().setBackground(Color.RED);
-		getContentPane().setLayout(new BorderLayout());
+		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		inicializarComponentes();
 
@@ -84,46 +81,21 @@ public class VentanaPrincipal  extends JFrame{
 		this.panelNuevo = panelNuevo;
 	}
 
-	/**
-	 * @return the pBotones
-	 */
 	public PanelBotones getpBotones() {
 		return pBotones;
 	}
 
-	/**
-	 * @param pBotones the pBotones to set
-	 */
 	public void setpBotones(PanelBotones pBotones) {
 		this.pBotones = pBotones;
 	}
 
-	/**
-	 * @return the pCatalogo
-	 */
 	public PanelCatalogo getpCatalogo() {
 		return pCatalogo;
 	}
 
-	/**
-	 * @param pCatalogo the pCatalogo to set
-	 */
 	public void setpCatalogo(PanelCatalogo pCatalogo) {
 		this.pCatalogo = pCatalogo;
 	}
 
-	/**
-	 * @return the scroll
-	 */
-	public JScrollPane getScroll() {
-		return scroll;
-	}
-
-	/**
-	 * @param scroll the scroll to set
-	 */
-	public void setScroll(JScrollPane scroll) {
-		this.scroll = scroll;
-	}
-
+	
 }
