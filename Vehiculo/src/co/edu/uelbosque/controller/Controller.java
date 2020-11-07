@@ -1,6 +1,10 @@
 package co.edu.uelbosque.controller;
 
 import java.io.File;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+
 import java.awt.Component;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
@@ -10,6 +14,7 @@ import java.awt.event.ActionListener;
 import co.edu.uelbosque.modelo.Vehiculo;
 import co.edu.uelbosque.modelo.persistence.Archivo;
 import co.edu.uelbosque.modelo.persistence.VehiculoDAO;
+import co.edu.uelbosque.view.VentanaInfo;
 import co.edu.uelbosque.view.VentanaPrincipal;
 
 public class Controller implements ActionListener {
@@ -55,6 +60,18 @@ public class Controller implements ActionListener {
 		ventana.getPanelNuevo().getbConfirmar().addActionListener(this);
 		ventana.getPanelNuevo().getbAtras().addActionListener(this);
 
+		// BOTONES AGREGAR
+		ventana.getpBotones().getAvion().addActionListener(this);
+		ventana.getpBotones().getCamion().addActionListener(this);
+		ventana.getpBotones().getCarro().addActionListener(this);
+		ventana.getpBotones().getHelicoptero().addActionListener(this);
+		ventana.getpBotones().getMoto().addActionListener(this);
+		ventana.getpBotones().getTodos().addActionListener(this);
+		ventana.getpBotones().getVendidos().addActionListener(this);
+		ventana.getpBotones().getDisponibles().addActionListener(this);
+		
+		//BOTON CATALOGO
+		ventana.getpCatalogo().getBuscar().addActionListener(this);
 	}
 
 	MouseListener e = new MouseListener() {
@@ -97,23 +114,23 @@ public class Controller implements ActionListener {
 			// BOTONES TIPO Y MOSTRAR
 			if (e.getSource() == ventana.getPanelNuevo().getbMoto()) {
 				tipo = "Moto";
-				mostrarImagen(0,"MOTO");
+				mostrarImagen(0, "MOTO");
 			}
 			if (e.getSource() == ventana.getPanelNuevo().getbHelicoptero()) {
 				tipo = "Helicoptero";
-				mostrarImagen(1,"HELICOPTERO");
+				mostrarImagen(1, "HELICOPTERO");
 			}
 			if (e.getSource() == ventana.getPanelNuevo().getbCarro()) {
 				tipo = "Carro";
-				mostrarImagen(2,"CARRO");
+				mostrarImagen(2, "CARRO");
 			}
 			if (e.getSource() == ventana.getPanelNuevo().getbAvion()) {
 				tipo = "Avion";
-				mostrarImagen(3,"AVION");
+				mostrarImagen(3, "AVION");
 			}
 			if (e.getSource() == ventana.getPanelNuevo().getbCamioneta()) {
 				tipo = "Camioneta";
-				mostrarImagen(4,"CAMIONETA");
+				mostrarImagen(4, "CAMIONETA");
 			}
 		}
 
@@ -135,28 +152,107 @@ public class Controller implements ActionListener {
 			String placa = ventana.getPanelNuevo().getTextoPlaca().getText();
 			int nPuertas = Integer.parseInt(ventana.getPanelNuevo().getPuertaBox().getSelectedItem().toString());
 			int nAsientos = Integer.parseInt(ventana.getPanelNuevo().getAsientoBox().getSelectedItem().toString());
-			
+
 			vehiculodao.agregarVehiculo(modelo, marca, placa, nPuertas, nAsientos, tipo, false, f);
-			ventana.mostrarMensaje("Se agregó el vehiculo \n"+vehiculodao.mostrarInfoString(placa, vehiculodao.getVehiculos()));
+			ventana.mostrarMensaje(
+					"Se agregó el vehiculo \n" + vehiculodao.mostrarInfoString(placa, vehiculodao.getVehiculos()));
 			vehiculodao.mostrarLista(vehiculodao.getVehiculos());
-			
+
 			ventana.getPanelNuevo().getTextoMarca().setText("");
 			ventana.getPanelNuevo().getTextoPlaca().setText("");
 		}
+		if (command.equals("COMPRAR")) {
+			System.out.println("hola");
+		}
 		if (command.equals("ATRAS")) {
 			cambiarPanel(ventana.getPanelInicio());
-		}if (command.equals("CATALOGO")) {
+		}
+		if (command.equals("CATALOGO")) {
 			cambiarPanel(ventana.getpCatalogo());
 			ventana.getContentPane().add(ventana.getpBotones(), BorderLayout.NORTH);
 			ventana.getpBotones().setVisible(true);
 			ventana.getContentPane().repaint();
-		}if (command.equals("COMPRAR")) {
-			System.out.println("hola");
 		}
+		if (command.equals("CARROBUSCAR")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Carro")) {
+					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+
+		}
+		if (command.equals("CAMIONBUSCAR")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Camioneta")) {
+					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if (command.equals("MOTOBUSCAR")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Moto")) {
+					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if (command.equals("AVIONBUSCAR")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Avion")) {
+					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if (command.equals("HELICOPTEROBUSCAR")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Helicoptero")) {
+					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if (command.equals("TODOS")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			VentanaInfo v = new VentanaInfo();
+			String a =vehiculodao.mostrarLista(vehiculodao.getVehiculos());
+			v.getPanelInfo().getMostrarInfo3().setText(a);;
+			
+		}
+		if (command.equals("VENDIDOS")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getEstado() == true) {
+					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}
+		}
+		if (command.equals("DISPONIBLES")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				if (vehiculodao.getVehiculos().get(i).getEstado() == false) {
+					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
+				}
+			}		}
+		if (command.equals("COMPARAR")) {
+			
+		}
+		if (command.equals("MOSTRAR")) {
+			
+			String placa = ventana.getpCatalogo().getDatos().getSelectedItem().toString();
+			String a ="<html><body>Informacion del "+vehiculodao.mostrarInfoString(placa, vehiculodao.getVehiculos()).replace("\n", "<br>")+"</body></html>";
+			a = a.replace("true", "Vendido").replace("false", "Disponible");
+			ventana.getpCatalogo().getMostrarInfo().setText(a);
+			ventana.getpCatalogo().getMostrarInfo2().setText(a);
+		}
+
 	}
 
 	/**
 	 * Este metodo cambia a un nuevo panel
+	 * 
 	 * @param panel - panel nuevo
 	 */
 	public void cambiarPanel(Component panel) {
@@ -168,7 +264,8 @@ public class Controller implements ActionListener {
 
 	/**
 	 * Este metodo muestra las imagenes de los Labels
-	 * @param a - La imagen ubicada en el numero a del arreglo
+	 * 
+	 * @param a    - La imagen ubicada en el numero a del arreglo
 	 * @param text - el texto debajo de la imagen
 	 */
 	public void mostrarImagen(int a, String text) {

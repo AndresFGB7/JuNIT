@@ -68,6 +68,7 @@ public class PanelBotones extends JPanel{
 		ImageIcon busc = new ImageIcon(getClass().getResource("/imagenes/"+"lupa.gif"));
 		buscar = new JButton(busc);
 	    buscar.setBorderPainted(false);
+	    buscar.setBackground(Color.black);
 		buscar.setOpaque(false);
 		buscar.setActionCommand("BUSCAR");
 		buscar.setBounds(792, 16, 53, 53);
@@ -76,6 +77,7 @@ public class PanelBotones extends JPanel{
 		ImageIcon vs = new ImageIcon(getClass().getResource("/imagenes/"+"vs.gif"));
 		comparar = new JButton(vs);
 		comparar.setBorderPainted(false);
+		comparar.setBackground(Color.black);
 		comparar.setOpaque(false);
 		comparar.setActionCommand("COMPARAR");
 		comparar.setBounds(883, 19, 53, 53);
