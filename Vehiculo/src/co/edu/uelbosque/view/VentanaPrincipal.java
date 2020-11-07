@@ -7,13 +7,15 @@ import javax.swing.JOptionPane;
 
 /**
  * En esta clase se adjuntan los paneles y 
- * se da el tamaño a la ventana
+ * se da el tamaï¿½o a la ventana
  *
  */
 public class VentanaPrincipal  extends JFrame{
 	
 	private PanelPrincipal panelInicio;
 	private PanelNuevo panelNuevo;
+	private PanelBotones pBotones;
+	private PanelCatalogo pCatalogo;
 	
 	/**
 	 * Este es el metodo constructor
@@ -40,8 +42,9 @@ public class VentanaPrincipal  extends JFrame{
 	public void inicializarComponentes() {
 		
 		panelInicio = new PanelPrincipal();
-		
 		panelNuevo = new PanelNuevo();
+		pBotones = new PanelBotones();
+		pCatalogo =  new PanelCatalogo();
 		getContentPane().add(panelInicio, BorderLayout.CENTER);
 
 		
