@@ -94,12 +94,8 @@ public class VehiculoDAOTest extends TestCase {
 
 	}public void testCompararVehiculopor() {
 		setupEscenario();
-		assertNotNull("Se compararon los vehiculos", vehiculo.compararVehiculopor(vehiculo_1.getPlaca(), vehiculo_5.getPlaca(), "Modelo", lista));
-	}
-	public void testCompararVehiculos() {
-		setupEscenario();
-		assertNotNull("Se compararon los vehiculos", vehiculo.compararVehiculos(vehiculo_1.getPlaca(), vehiculo_5.getPlaca(),lista));
-
+		assertNotNull("Se compararon los vehiculos", vehiculo.mostrarInfoPor(vehiculo_1.getPlaca(),"Modelo", lista));
+		assertNull("Se compararon los vehiculos", vehiculo.mostrarInfoPor("aa","Modelo", lista));
 	}
 
 }

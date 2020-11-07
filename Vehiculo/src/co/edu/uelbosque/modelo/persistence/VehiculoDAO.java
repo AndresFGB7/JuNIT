@@ -211,9 +211,9 @@ public class VehiculoDAO {
 	 * @param vehiculos - El arraylist donde se comparan los vehiculos
 	 * @return - La comparacion en una cadena de texto
 	 */
-	public String compararVehiculopor(String placaA, String placaB, String comparar, ArrayList<Vehiculo> vehiculos) {
-		String aux = "";
-		String aux2 = "";
+	public String mostrarInfoPor(String placaA, String comparar, ArrayList<Vehiculo> vehiculos) {
+		String aux = null;
+
 
 		for (int i = 0; i < vehiculos.size(); i++) {
 			if (vehiculos.get(i).getPlaca().equals(placaA)) {
@@ -234,60 +234,9 @@ public class VehiculoDAO {
 							+ vehiculos.get(i).getTipoVehiculo();
 				}
 			}
-			if (vehiculos.get(i).getPlaca().equals(placaB)) {
-				if (comparar.equals("Modelo")) {
-					aux2 = vehiculos.get(i).getModelo();
-				} else if (comparar.equals("Marca")) {
-					aux2 = vehiculos.get(i).getMarca();
-				} else if (comparar.equals("Capacidad")) {
-					aux2 = vehiculos.get(i).getnAsientos() + "";
-				} else if (comparar.equals("#Puertas")) {
-					aux2 = "" + vehiculos.get(i).getnPuertas();
-				} else if (comparar.equals("Tipo")) {
-					aux2 = vehiculos.get(i).getTipoVehiculo();
-				}
-			}
 		}
-		aux2 = " \nMientras que el de " + placaB + " es " + aux2;
-		return aux + aux2;
+		return aux ;
 	}
-
-	/**
-	 * Este metodo compara toda la informacion de los dos vehiculos dados<br>
-	 * <b>pre</b> Existe un arrego!=null<br>
-	 * <b>post</b> Retorna la info completa de la comparacion
-	 * @param placaA	- Identidficador del primer vehiculo tipo String !=null
-	 * @param placaB    - Identificador del segundo Vehiculo tipo String !=null
-	 * @param vehiculos - El arraylist donde se comparan los vehiculos
-	 * @return - La comparacion de toda la info en una cadena de texto
-	 */
-	public String compararVehiculos(String placaA, String placaB, ArrayList<Vehiculo> vehiculos) {
-		String aux = "";
-		String aux2 = "";
-		for (int i = 0; i < vehiculos.size(); i++) {
-			if (vehiculos.get(i).getPlaca().equals(placaA)) {
-				aux = vehiculos.get(i).toString();
-			}
-			if (vehiculos.get(i).getPlaca().equals(placaB)) {
-				aux2 = "\nComparado con: " + vehiculos.get(i).toString();
-			}
-		}
-		return aux + aux2;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	/**

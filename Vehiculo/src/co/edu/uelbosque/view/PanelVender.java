@@ -43,7 +43,7 @@ public class PanelVender extends JPanel {
 
 		// LABEL PLACA
 		placa = new JLabel("123-YTF");
-		placa.setFont(new Font("Phosphate", 2, 48));
+		placa.setFont(new Font("Phosphate", 2, 35));
 		// placa.setOpaque(false);
 		placa.setForeground(Color.BLACK);
 		placa.setBounds(644, 36, 170, 43);
@@ -132,11 +132,11 @@ public class PanelVender extends JPanel {
 
 		// COMBOBOX
 
-		try {
-			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		datosVenta = new JComboBox<String>();
 		datosVenta.setBounds(70, 325, 332, 62);
@@ -175,8 +175,8 @@ public class PanelVender extends JPanel {
 		ImageIcon b = new ImageIcon(getClass().getResource("/imagenes/" + comando + ".png"));
 		boton = new JButton(b);
 		boton.setBorderPainted(false);
+		boton.setBackground(Color.black);
 		boton.setOpaque(false);
-		boton.setBackground(Color.white);
 		return boton;
 	}
 

@@ -77,9 +77,12 @@ public class Controller implements ActionListener {
 		ventana.getpBotones().getTodos().addActionListener(this);
 		ventana.getpBotones().getVendidos().addActionListener(this);
 		ventana.getpBotones().getDisponibles().addActionListener(this);
+		ventana.getpBotones().getComparar().addActionListener(this);
 		
 		//BOTON CATALOGO
 		ventana.getpCatalogo().getBuscar().addActionListener(this);
+		ventana.getpCatalogo().getbComparar().addActionListener(this);
+		ventana.getpCatalogo().getbAtras().addActionListener(this);
 	}
 
 	MouseListener e = new MouseListener() {
@@ -180,6 +183,8 @@ public class Controller implements ActionListener {
 			ventana.getContentPane().repaint();
 		}
 		if (command.equals("CARROBUSCAR")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
 				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Carro")) {
@@ -189,6 +194,8 @@ public class Controller implements ActionListener {
 
 		}
 		if (command.equals("CAMIONBUSCAR")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
 				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Camioneta")) {
@@ -197,6 +204,8 @@ public class Controller implements ActionListener {
 			}
 		}
 		if (command.equals("MOTOBUSCAR")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
 				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Moto")) {
@@ -205,6 +214,8 @@ public class Controller implements ActionListener {
 			}
 		}
 		if (command.equals("AVIONBUSCAR")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
 				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Avion")) {
@@ -213,6 +224,8 @@ public class Controller implements ActionListener {
 			}
 		}
 		if (command.equals("HELICOPTEROBUSCAR")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
 				if (vehiculodao.getVehiculos().get(i).getTipoVehiculo().equals("Helicoptero")) {
@@ -221,6 +234,8 @@ public class Controller implements ActionListener {
 			}
 		}
 		if (command.equals("TODOS")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			VentanaInfo v = new VentanaInfo();
 			String a =vehiculodao.mostrarLista(vehiculodao.getVehiculos());
@@ -228,6 +243,8 @@ public class Controller implements ActionListener {
 			
 		}
 		if (command.equals("VENDIDOS")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
 				if (vehiculodao.getVehiculos().get(i).getEstado() == true) {
@@ -236,6 +253,8 @@ public class Controller implements ActionListener {
 			}
 		}
 		if (command.equals("DISPONIBLES")) {
+			changeToComparar(true);
+
 			ventana.getpCatalogo().getDatos().removeAllItems();
 			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
 				if (vehiculodao.getVehiculos().get(i).getEstado() == false) {
@@ -254,6 +273,53 @@ public class Controller implements ActionListener {
 			ventana.getpCatalogo().getMostrarInfo2().setText(a);
 		}
 
+		if (command.equals("COMPARAR")) {
+			ventana.getpCatalogo().getDatos().removeAllItems();
+			changeToComparar(false);
+			ventana.getpCatalogo().getComparar().addItem("Todo");
+			ventana.getpCatalogo().getComparar().addItem("Modelo");
+			ventana.getpCatalogo().getComparar().addItem("Marca");
+			ventana.getpCatalogo().getComparar().addItem("Capacidad");
+			ventana.getpCatalogo().getComparar().addItem("#Puertas");
+			ventana.getpCatalogo().getComparar().addItem("Tipo");
+			ventana.getpCatalogo().getComparar().setVisible(true);
+			for (int i = 0; i < vehiculodao.getVehiculos().size(); i++) {
+				ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca());
+				ventana.getpCatalogo().getDatos2().addItem(vehiculodao.getVehiculos().get(i).getPlaca());
+			}	
+		}
+		if (command.equals("Compara")) {
+			
+
+			
+			String placa1 = ventana.getpCatalogo().getDatos().getSelectedItem().toString();
+			String placa2 = ventana.getpCatalogo().getDatos2().getSelectedItem().toString();
+			String comparar = ventana.getpCatalogo().getComparar().getSelectedItem().toString();
+			if (comparar.equals("Todo")) {
+				String a ="<html><body>Informacion del "+vehiculodao.mostrarInfoString(placa1, vehiculodao.getVehiculos()).replace("\n", "<br>")+"</body></html>";
+				String b ="<html><body>Informacion del "+vehiculodao.mostrarInfoString(placa2, vehiculodao.getVehiculos()).replace("\n", "<br>")+"</body></html>";
+				a = a.replace("true", "Vendido").replace("false", "Disponible");
+				b = b.replace("true", "Vendido").replace("false", "Disponible");
+				ventana.getpCatalogo().getMostrarInfo3().setText(a);
+				ventana.getpCatalogo().getMostrarInfo4().setText(a);
+				
+				ventana.getpCatalogo().getMostrarInfo5().setText(b);
+				ventana.getpCatalogo().getMostrarInfo6().setText(b);
+			}else{
+				
+				String a = "<html><body>"+vehiculodao.mostrarInfoPor(placa1,comparar, vehiculodao.getVehiculos()).replace("\n", "<br>")+"</body></html>";
+				String b ="<html><body>"+vehiculodao.mostrarInfoPor(placa2,comparar, vehiculodao.getVehiculos()).replace("\n", "<br>")+"</body></html>";
+				ventana.getpCatalogo().getMostrarInfo3().setText(a);
+				ventana.getpCatalogo().getMostrarInfo4().setText(a);
+				
+				ventana.getpCatalogo().getMostrarInfo5().setText(b);
+				ventana.getpCatalogo().getMostrarInfo6().setText(b);
+			}
+			
+			
+			
+			
+		}
 	}
 
 	/**
@@ -284,6 +350,35 @@ public class Controller implements ActionListener {
 			} else {
 				ventana.getPanelNuevo().getLabelMuestra(i).setVisible(false);
 			}
+		}
+	}/**
+	 *Este metodo apaga unos componentes del panel catalogo para comparar o no
+	 * @param a - true si no se compara
+	 */
+	public void changeToComparar(Boolean a) {
+		if (a == true) {
+			ventana.getpCatalogo().getbComparar().setVisible(false);
+			ventana.getpCatalogo().getBuscar().setVisible(true);
+			
+			ventana.getpCatalogo().getDatos2().setVisible(false);
+			ventana.getpCatalogo().getComparar().setVisible(false);
+			ventana.getpCatalogo().getMostrarInfo().setVisible(true);
+			ventana.getpCatalogo().getMostrarInfo2().setVisible(true);
+			ventana.getpCatalogo().getMostrarInfo3().setVisible(false);
+			ventana.getpCatalogo().getMostrarInfo4().setVisible(false);
+			ventana.getpCatalogo().getMostrarInfo5().setVisible(false);
+			ventana.getpCatalogo().getMostrarInfo6().setVisible(false);
+		}else {
+			ventana.getpCatalogo().getbComparar().setVisible(true);
+			ventana.getpCatalogo().getDatos2().setVisible(true);
+			ventana.getpCatalogo().getComparar().setVisible(true);
+			ventana.getpCatalogo().getBuscar().setVisible(false);
+			ventana.getpCatalogo().getMostrarInfo().setVisible(false);
+			ventana.getpCatalogo().getMostrarInfo2().setVisible(false);
+			ventana.getpCatalogo().getMostrarInfo3().setVisible(true);
+			ventana.getpCatalogo().getMostrarInfo4().setVisible(true);
+			ventana.getpCatalogo().getMostrarInfo5().setVisible(true);
+			ventana.getpCatalogo().getMostrarInfo6().setVisible(true);
 		}
 	}
 

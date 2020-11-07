@@ -51,6 +51,10 @@ public class VentanaPrincipal  extends JFrame{
 
 		
 	}
+	/**
+	 * Este metodo nos muestra un mensaje en JOptionPane
+	 * @param a - String que se muestra
+	 */
 	public void mostrarMensaje(String a) {
 		JOptionPane.showMessageDialog(null, a);
 	}
