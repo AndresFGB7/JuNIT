@@ -21,6 +21,7 @@ public class VentanaInfo extends JFrame{
 
 	private void inicializarComponentes() {
 
+		
 		panelInfo = new PanelInfo();
 		scroll = new JScrollPane();
 		scroll.setViewportView(panelInfo);

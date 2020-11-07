@@ -6,8 +6,10 @@ import java.awt.Font;
 
 import javax.swing.*;
 
-
-
+/**
+ * Esta clase agrega muestra el catalogo de carros
+ *
+ */
 public class PanelCatalogo extends JPanel {
 	private JLabel fondo;
 	private JComboBox<String> datos;
@@ -23,7 +25,9 @@ public class PanelCatalogo extends JPanel {
 	private JComboBox<String> datos2;
 	private JButton[] botones;
 	
-	
+	/**
+	 * El metodo constructor de la clase Panel Catalogo
+	 */
 	public PanelCatalogo() {
 		setLayout(null);
 		inicializarComponentes();
@@ -31,18 +35,31 @@ public class PanelCatalogo extends JPanel {
 
 	}
 
+	/**
+	 * Este metodo inicializa los Componentes de la clase  Panel Catalogo
+	 * 
+	 */
 	public void inicializarComponentes() {
+	
+		try {
+			javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		
-		
+		//COMBOBOX DE DATOS
 		datos = new JComboBox<String>();
 		datos.setBounds(100,120,100,20);
 		add(datos);
 		
+		//BOTON
 		buscar = new JButton("Mostrar");
 		buscar.setBounds(100,300,100,20);
 		buscar.setActionCommand("MOSTRAR");
 		add(buscar);
 		
+		//VENTANA DATOS
 		mostrarInfo = new JLabel();
 		mostrarInfo.setBounds(450,100,400,300);
 		mostrarInfo.setBackground(Color.white);
@@ -58,7 +75,7 @@ public class PanelCatalogo extends JPanel {
 		mostrarInfo2.setForeground(Color.black);
 		add(mostrarInfo2);
 
-		
+		//FONDO
 		ImageIcon backGround = new ImageIcon(getClass().getResource("/imagenes/" + "fondoCatalogo.png"));
 		fondo = new JLabel(backGround);
 		fondo.setBounds(0, 0, 972, 495);
