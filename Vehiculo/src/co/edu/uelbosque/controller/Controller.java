@@ -1,10 +1,6 @@
 package co.edu.uelbosque.controller;
 
 import java.io.File;
-
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-
 import java.awt.Component;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
@@ -17,6 +13,11 @@ import co.edu.uelbosque.modelo.persistence.VehiculoDAO;
 import co.edu.uelbosque.view.VentanaInfo;
 import co.edu.uelbosque.view.VentanaPrincipal;
 
+/**
+ * En esta clase se junta la parte de vista y modelo
+ * para el correcto funcionamiento del programa
+ *
+ */
 public class Controller implements ActionListener {
 
 	private Vehiculo vehiculo;
@@ -27,6 +28,9 @@ public class Controller implements ActionListener {
 	private VentanaPrincipal ventana;
 	private String tipo;
 
+	/**
+	 * Metodo constructor del controler
+	 */
 	public Controller() {
 
 		f = "Data/Vehiculo.dat";
@@ -41,6 +45,10 @@ public class Controller implements ActionListener {
 
 	}
 
+	/**
+	 * Este metodo asigna los oyentes de los botones
+	 * 
+	 */
 	private void asignarOyentes() {
 
 		// BOTONES PANEL PRINCIPAL
@@ -140,6 +148,7 @@ public class Controller implements ActionListener {
 		}
 	};
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
@@ -160,9 +169,6 @@ public class Controller implements ActionListener {
 
 			ventana.getPanelNuevo().getTextoMarca().setText("");
 			ventana.getPanelNuevo().getTextoPlaca().setText("");
-		}
-		if (command.equals("COMPRAR")) {
-			System.out.println("hola");
 		}
 		if (command.equals("ATRAS")) {
 			cambiarPanel(ventana.getPanelInicio());
@@ -236,8 +242,8 @@ public class Controller implements ActionListener {
 					ventana.getpCatalogo().getDatos().addItem(vehiculodao.getVehiculos().get(i).getPlaca().toString());
 				}
 			}		}
-		if (command.equals("COMPARAR")) {
-			
+		if (command.equals("COMPRAR")) {
+			cambiarPanel(ventana.getpVender());
 		}
 		if (command.equals("MOSTRAR")) {
 			
