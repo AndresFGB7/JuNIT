@@ -43,6 +43,8 @@ public class Controller implements ActionListener {
 		ventana.getPanelInicio().getAgregar().addMouseListener(e);
 		ventana.getPanelInicio().getComprar().addMouseListener(e);
 		ventana.getPanelInicio().getAgregar().addActionListener(this);
+		ventana.getPanelInicio().getCatalogo().addActionListener(this);
+		ventana.getPanelInicio().getComprar().addActionListener(this);
 
 		// BOTONES AGREGAR
 		ventana.getPanelNuevo().getbAvion().addMouseListener(e);
@@ -143,6 +145,13 @@ public class Controller implements ActionListener {
 		}
 		if (command.equals("ATRAS")) {
 			cambiarPanel(ventana.getPanelInicio());
+		}if (command.equals("CATALOGO")) {
+			cambiarPanel(ventana.getpCatalogo());
+			ventana.getContentPane().add(ventana.getpBotones(), BorderLayout.NORTH);
+			ventana.getpBotones().setVisible(true);
+			ventana.getContentPane().repaint();
+		}if (command.equals("COMPRAR")) {
+			System.out.println("hola");
 		}
 	}
 

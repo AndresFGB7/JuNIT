@@ -1,6 +1,7 @@
 package co.edu.uelbosque.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
@@ -8,8 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 /**
@@ -25,6 +28,7 @@ public class PanelNuevo extends JPanel {
 	private JComboBox<String> modeloBox;
 	private JComboBox<String> asientoBox;
 	private JComboBox<String> puertaBox;
+
 	/**
 	 * El metodo constructor de la clase Panel Nuevo
 	 */
@@ -35,7 +39,6 @@ public class PanelNuevo extends JPanel {
 		inicializarComponentes();
 
 		setVisible(false);
-
 	}
 
 	/**
@@ -172,6 +175,9 @@ public class PanelNuevo extends JPanel {
 		enunciado2.setForeground(Color.gray);
 		enunciado2.setFont(new Font("Phosphate", 2, 60));
 		add(enunciado2);
+		
+		
+		
 		
 		
 		ImageIcon fond = new ImageIcon(getClass().getResource("/imagenes/" + "choose.png"));
